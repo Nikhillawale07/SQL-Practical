@@ -1,0 +1,443 @@
+Database
+-query
+** Types of SQL Language **
+1)DDL-Data definition language
+-Create 
+-Alter
+-Drop
+-Truncate
+-Rename
+
+2)DML-Data manipulation language
+-Insert
+-Delete
+-Update
+
+3)DCL-Data control lang
+-Grant 
+-Revoke
+
+3)TCL -Transaction control language 
+-Commit
+-Rollback
+-Savepoint
+
+
+4)SQL-Data query language
+-Select
+
+**CREATE DATABASE 
+CREATE DATABASE DATABASE NAME
+
+**CREATE TABLE TABLE NAME(
+cl-Name1  Datatypype(size),
+cl-Name2  Datatypype(size),.
+.
+.
+.
+cl-NameN  Datatypype(size));
+
+--EXAMPLE
+
+CREATE TABLE student(student_Name varchar(20),
+ROLL_No int,
+city varchar(20),
+college varchar(50),
+fees int,
+marks int);
+
+/** INSERT COMMAND
+
+SYNTAX--
+1)INSERT INTO table_Name(cl_Name1,cl_Name2,cl_Name3)
+VALUES(V1,v2,v3);
+
+2)INSERT INTO table_Name(cl_Name2,cl_Name3,cl_Name1)
+VALUES(V2,v3,v1);
+
+3)INSERT INTO table_Name(cl_Name1,cl_Name2)
+VALUES(V1,v2);
+
+4)INSERT INTO table_Name VALUES(V1,v2,v3);
+
+5)INSERT INTO table_Name(cl_Name1,cl_Name2,cl_Name3)
+VALUES	(V1,v2,v3),
+	(V1,v2,v3),
+	(V1,v2,v3);
+
+
+ 
+DELETE FROM STUDENT;
+
+
+SELECT *FROM student WHERE Roll between 3 and 5;
+SELECT *FROM student WHERE Roll is NULL;
+
+SELECT *FROM student;
+SELECT *FROM student WHERE Roll between 3 and 5;
+SELECT *FROM student WHERE Roll is NULL;
+SELECT *FROM student WHERE Name BETWEEN "Nikhil" and "Raj";
+SELECT *FROM student WHERE Name in ("Nikhil","Raj");
+SELECT *FROM student WHERE Name like ("%sh");
+SELECT *FROM student WHERE Name like ("Nik%");
+SELECT *FROM student WHERE Name like ("%Ra%");
+SELECT *FROM student WHERE Roll is Not NULL; 
+
+
+
+
+
+
+show databases;
+use college;
+show tables;
+select *from student;
+alter table student ;
+
+CREATE TABLE jap1(id int ,empname varchar(20),dept varchar(20));
+INSERT INTO jap1(id,empname,dept)values(1,"Nikhil","Computer");
+
+SELECT *FROM jap1;
+
+CREATE TABLE jap4(id int UNIQUE KEY,name varchar(20),depname varchar(20));
+INSERT INTO jap4(id,name,depname)values(3,"vikrant","Civil");
+
+SELECT *FROM jap4;
+
+CREATE TABLE jap5(id int auto_increment unique key,empname varchar(20),deptname varchar(20));
+INSERT INTO jap5(empname,deptname)values("Suraj","HR");
+
+SELECT *FROM jap5;
+
+
+drop table jap6;
+SELECT *FROM jap75;
+show tables;
+SELECT *FROM student;
+alter table student drop column Grade;
+truncate table sample;
+
+
+
+show databases;
+use college;
+show tables;
+select *from student;
+alter table student ;
+CREATE TABLE jap1(id int ,empname varchar(20),dept varchar(20));
+INSERT INTO jap1(id,empname,dept)values(1,"Nikhil","Computer");
+SELECT *FROM jap1;
+CREATE TABLE jap4(id int UNIQUE KEY,name varchar(20),depname varchar(20));
+INSERT INTO jap4(id,name,depname)values(3,"vikrant","Civil");
+SELECT *FROM jap4;
+CREATE TABLE jap5(id int auto_increment unique key,empname varchar(20),deptname varchar(20));
+INSERT INTO jap5(empname,deptname)values("Suraj","HR");
+SELECT *FROM jap5;
+CREATE TABLE jap6(id int primary key,city varchar(20));
+INSERT INTO jap6(id,city)values(5,"Nashik");
+SELECT *FROM jap6;
+
+SELECT *FROM student;
+ALTER TABLE student ADD COLUMN Mark int;
+INSERT INTO student(Mark)values(50);
+UPDATE student SET Mark=E45 WHER Roll_No=3;
+UPDATE student SET Mark=35 WHERE Roll_No=4;
+DELETE FROM student WHERE Mark=50;
+rename table jap to jap75;
+
+drop table jap5;
+SELECT *FROM jap75;
+show tables;
+SELECT *FROM student;
+alter table student drop column Grade;
+select *from jap5;
+
+DROP TABLE sample;
+truncate table Student;
+
+
+show databases;
+use college;
+show tables;
+SELECT *FROM student;
+
+ALTER TABLE student change column City Location varchar(20);
+use jap74;
+SELECT *FROM sample;
+ALTER TABLE sample modify column Roll varchar(20);
+desc sample;
+CREATE TABLE ABC(id int);
+SELECT *FROM ABC;
+ALTER TABLE ABC add constraint unique key(id);
+ALTER TABLE ABC add constraint primary key(id);
+desc ABC;
+SELECT *FROM student;
+CREATE TABLE student2 like student;
+INSERT INTO student2 SELECT *FROM student;
+SELECT *FROM student2;
+
+************************************************************
+SELECT upper(Name) FROM student2;
+SELECT lower(Name) FROM student2;
+SELECT upper(Location) FROM student2;
+SELECT ucase(Name) FROM student2;
+SELECT lcase(Name) FROM student2;
+SELECT concat(Name," From ",Location) FROM student2;
+SELECT reverse(Name) FROM student2;
+SELECT length(Name) FROM student;
+SELECT substring(Name,1,3) FROM student2;
+SELECT count(*) FROM student2;
+SELECT count(Name) FROM student2;
+SELECT count(Mark) FROM student2;
+SELECT *FROM student2 group by Mark;
+
+
+on delete cascade //for deleting parent table data
+on delete set null
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+USE college;
+CREATE TABLE parent1(cid int primary key,cname varchar(20));
+INSERT INTO parent1(cid,cname)values(1,"a"),(2,"b"),(3,"c"),(4,"d"),(5,"e");
+SELECT *FROM parent1;
+CREATE TABLE Child1
+(oid int,pid int,custid int,constraint custkey2 foreign key (custid) references parent1(cid)  on delete cascade);
+insert into Child1(oid,pid,custid)values(101,201,1),(101,201,4),(101,201,1),(101,201,4),(101,201,2);
+SELECT *FROM Child1;
+DELETE FROM parent WHERE Cid=1;
+DELETE FROM Child WHERE custid=1;
+DELETE FROM parent1 WHERE cid=1;
+SELECT *FROM parent1;
+--------------------------------------------------------------------------------------------------
+use college;
+show tables;
+select *from student;
+SELECT Roll_NO FROM student ORDER BY Roll_No DESC;
+SELECT Roll_NO FROM student ORDER BY Roll_No ASC;
+SELECT Mark FROM student GROUP BY Mark;
+UPDATE student SET Mark=45 WHERE Name="Prasad";
+---------------------------------------------------------------------------------------------------------------
+
+use jap74;
+show tables;
+SELECT *FROM  sample;
+create table cust (cid int primary key,cname varchar(20));
+insert into cust values(101,"virat"),(102,"rohit"),(103,"shikhar");
+
+create table ord3(ordid int,custid int, 
+  constraint custforeignkey3 foreign key (custid) references cust(cid) on update cascade);
+ insert into ord3(ordid,custid)values(1,101),(2,102),(3,103); 
+  SELECT *FROM ord3;
+  
+  create table emp(id int primary key,ename varchar(20),city varchar(20));
+  insert into emp values(1,"virat","pune"),(2,"rohit","mumbai"),(3,"sachin","thane"),(4,"saurav","pune");
+  select *from emp;
+  create table dept(dname varchar(20),id int, constraint empkey foreign key (id) references emp(id));
+  insert into dept values("HR",1),("TEST",2),("DEV",3),("Man",4);
+  select *from dept;
+  select emp.ename,dept.dname from emp right join dept on emp.id=dept.id;
+
+-------------------------------------------------------------------------------------------------------------
+use jap74;
+show tables;
+SELECT *FROM  sample;
+create table cust (cid int primary key,cname varchar(20));
+insert into cust values(101,"virat"),(102,"rohit"),(103,"shikhar");
+
+create table ord3(ordid int,custid int, 
+  constraint custforeignkey3 foreign key (custid) references cust(cid) on update cascade);
+ insert into ord3(ordid,custid)values(1,101),(2,102),(3,103); 
+  SELECT *FROM ord3;
+  
+  create table emp(id int primary key,ename varchar(20),city varchar(20));
+  insert into emp values(1,"virat","pune"),(2,"rohit","mumbai"),(3,"sachin","thane"),(4,"saurav","pune");
+  select *from emp;
+  create table dept(dname varchar(20),id int, constraint empkey foreign key (id) references emp(id));
+  insert into dept values("HR",1),("TEST",2),("DEV",3),("Man",4);
+  select *from dept;
+  select emp.ename,dept.dname from emp left join dept on emp.id=dept.id;
+   select emp.ename,dept.dname from emp right join dept on emp.id=dept.id;
+   
+   create table emp1 (eid int,empname varchar(20),mid int);
+   insert into emp1 values(1,"virat",3),(2,"rohit",1),(4,"rahul",5),(5,"saurav",4),(6,"gautam",6);
+   insert into emp1 (eid,empname)values(3,"sachin");
+   select *from emp1;
+   select *from emp1 as e inner join emp1 as m on e.eid=m.mid;
+    select e.empname as employee,m.empname as manager from emp1 as e inner join emp1 as m on m.eid=e.mid;
+
+--------------------------------------------------------------------------------------------------------------
+
+use college;
+show tables;
+select *from student;
+select *from student2;
+select Name,Location from student
+union all
+select Name,Location from student2;
+
+-----------------------------------------------------------------------------------------------------------
+Normalization
+-1NF 1st normalization form
+1)1 cell should contain single value only.
+2)there should not be multiple columns for same data type.
+
+-2NF Normalization form
+1)To follow 1NF
+2)All non key column should totally dependent on key columns.
+
+-3NF-3rd Normalization form
+1)To follow 2NF
+2)A non key column should not be depend on other non key column.
+-------------------------------------------------------------------------------------------------------------------------------
+
+delimiter $$
+create trigger trainerUpdate 
+ON trainer 
+after insert 
+for each row
+as 
+insert into sub(id)values(NEW.id);
+end;
+delmiter $$
+
+
+
+show databases;
+use college;
+use tgr;
+create database tgr;
+select * from sub;
+select *from trainer;
+create table trainer(id int primary key,tname varchar(20));
+create table sub(sname varchar(20),id int,constraint subjectkey foreign key (id) references trainer(id));
+
+delimiter $$
+create trigger Updatetrainer 
+after insert 
+on trainer
+for each row
+insert into sub(id)values(New.id);
+end $$
+
+insert into trainer values (1,"Nikhil");
+select *from trainer;
+
+create table sam(id int primary key,sname varchar(20));
+
+--------------------------------------------------------------------------------------------------------------------------------------
+trigger
+
+show databases;
+use tgr;
+create table emp(id int,ename varchar(20));
+create table dept(epd int,dept varchar(20));
+
+delimiter $$
+create trigger emp
+after insert 
+on emp
+for each row 
+begin
+insert into dept values (new.id,"not assigned")
+end;
+delimiter ;
+
+insert into emp values(101,"Nikhil");
+select *from emp;
+select *from dept;
+------------------------------------------------------------------------------------------------------------------------------Data types in SQL
+1.Numeric:
+	a. int -integers
+	b. float - decimal upto 9 numbers
+	c. double-decimal upto 15 digits
+	d .decimal - decimal fixed 
+	e.digint -upto 12 digits
+
+2.String:
+	a. char-fixed size
+	b. varchar- varible length
+	c. text-long text 
+
+3.Date and Time:
+	a.date-yyyy/mm/dd
+	b.datetime-yyyy-mm-dd hh-mm
+	c.time-hh-mm
+	d.timestamp-
+	e.year-yyyy
+	
+4.boolean: 
+	-True and False
+
+
+
+DATE – Stores only date (YYYY-MM-DD)
+TIME – Stores only time (HH:MM:SS)
+DATETIME – Stores date and time (YYYY-MM-DD HH:MM:SS)
+TIMESTAMP – Stores date and time, often used for automatic time tracking
+
+
+5. Binary Data Types
+Used to store binary data (images, files, etc.).
+
+BINARY(n) – Fixed-length binary data
+VARBINARY(n) – Variable-length binary data
+BLOB (Binary Large Object) – Stores large binary data
+
+---------------------------------------------------------------------------------------------------------------
+
+what is sql:
+---------------
+-SQL (Structured Query Language) is a standard language used to interact with relational databases. It allows 	users to store, retrieve, update, and delete data efficiently. SQL is widely used in database 	management systems like MySQL, PostgreSQL, SQL Server, and Oracle.
+ 
+Advantages of SQL
+-Easy to Learn – Uses simple English-like syntax.
+-Fast & Efficient – Optimized for handling large amounts of data.
+-Highly Secure – Supports authentication and authorization.
+-Scalability – Suitable for small and large databases.
+-Multi-Platform Support – Works with MySQL, PostgreSQL, Oracle, SQL Server, etc.
+
+
+5. Popular SQL Databases
+-MySQL – Open-source and widely used for web applications.
+-PostgreSQL – Advanced features with strong support for complex queries.
+-Microsoft SQL Server – Enterprise-level performance and security.
+-Oracle Database – Best for large businesses with high scalability.
+-SQLite – Lightweight, used for mobile applications.
+
+What are different types of joins in sql-
+----------------------------------
+-QL supports five major types of joins:
+
+INNER JOIN
+-Returns only matching records from both tables. Rows that don’t match are excluded.
+
+LEFT JOIN (LEFT OUTER JOIN)
+returns all records from the left table and matching records from the right table. If there is no match, NULL values are returned from the right table.
+
+RIGHT JOIN (RIGHT OUTER JOIN)
+-eturns all records from the right table and matching records from the left table. If there is no match, NULL values are returned from the left table.
+
+FULL JOIN (FULL OUTER JOIN)
+-Returns all records from both tables. If there’s no match, NULL values appear in place of missing data.
+
+CROSS JOIN
+-Returns the Cartesian product of both tables, meaning each row from the first table is combined with every row from the second table.
+-eg
+name	dept_name
+John	HR
+John	IT
+John	Sales
+Alice	HR
+Alice	IT
+Alice	Sales
+---------------------------------------------------------------------------------------------------------
+qsqd
+
+
+
+
+
+
+
+
+
