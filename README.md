@@ -1,2 +1,2 @@
-# SQL-Practicle
-SQL Practicle
+# SQL-Practical
+SQL Practical
